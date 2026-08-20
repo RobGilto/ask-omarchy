@@ -14,8 +14,35 @@ omarchy plugin add https://github.com/RobGilto/ask-omarchy.git --enable
 
 The second line is not optional and not automatic: Omarchy's plugin installer
 never executes anything from a plugin, so putting `bin/omarchy-ask` on your
-PATH is a step you take yourself, after reading it. Requires the `claude` CLI,
-signed in.
+PATH is a step you take yourself, after reading it.
+
+### Requirements
+
+| Needs | Why | Ships with |
+|---|---|---|
+| Omarchy Quattro (`omarchy-shell`) | the plugin is a bar widget | Omarchy |
+| `claude`, signed in | every answer is a real turn on your own Claude account | you install it |
+| `jq`, `uuidgen` | building the context bundle and session ids | base Arch |
+| `hyprctl` | live binds and the Lua dispatcher API | Hyprland |
+| `omarchy-launch-tui` | opens the terminal for **2nd opinion** | Omarchy |
+
+Optional: a Firecrawl MCP server, used only by `omarchy-ask docs --refresh` to
+cache the manual. Everything else works without it.
+
+The plugin itself asks for no keys, reads no credentials, and stores nothing in
+its own directory. All state lives in `~/.local/state/omarchy/ask/`.
+
+### Removal
+
+```bash
+omarchy plugin remove ask-omarchy.ask
+rm -f ~/.local/bin/omarchy-ask          # the symlink install.sh created
+rm -rf ~/.local/state/omarchy/ask       # context bundle, manual cache, and
+                                        # everything you taught it
+```
+
+Keep that last directory if you might reinstall — `expertise.md` is the part
+you cannot regenerate.
 
 A question box in the bar. Type "how do I move a window to workspace 3" and get
 the answer for *this* machine, not for Hyprland in general.
@@ -124,6 +151,10 @@ omarchy bar set ask-omarchy.ask keepSession false --json
 
 `OMARCHY_ASK_MODEL`, `OMARCHY_ASK_EFFORT`, and `OMARCHY_ASK_DOCS_MAX_AGE`
 override the same things for the CLI.
+
+## Licence
+
+MIT, see [LICENSE](LICENSE).
 
 ## Cost
 
