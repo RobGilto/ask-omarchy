@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "id": "ask-omarchy.ask",
+  "name": "Ask Omarchy",
+  "version": "1.0.0",
+  "author": "robgilto",
+  "license": "MIT",
+  "description": "Ask Claude about this machine's keybindings, config, and omarchy commands.",
+  "kinds": [
+    "bar-widget"
+  ],
+  "activation": "on-demand",
+  "entryPoints": {
+    "barWidget": "Panel.qml"
+  },
+  "barWidget": {
+    "displayName": "Ask Omarchy",
+    "description": "A question box in the bar, answered from this machine's live Hyprland binds, config, and the Omarchy manual.",
+    "category": "AI",
+    "aliases": [
+      "ask",
+      "omarchy-ask"
+    ],
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "model": "sonnet",
+      "keepSession": true,
+      "reviewModel": "opus"
+    },
+    "schema": [
+      {
+        "key": "model",
+        "type": "enum",
+        "label": "Model",
+        "options": [
+          "haiku",
+          "sonnet",
+          "opus"
+        ],
+        "defaultValue": "sonnet",
+        "description": "Haiku is fastest for keybinding lookups; opus reasons best across the manual."
+      },
+      {
+        "key": "reviewModel",
+        "type": "enum",
+        "label": "Second-opinion model",
+        "options": [
+          "sonnet",
+          "opus"
+        ],
+        "defaultValue": "opus",
+        "description": "The model the 2nd opinion button opens in a terminal. Keep it different from the answering model."
+      },
+      {
+        "key": "keepSession",
+        "type": "boolean",
+        "label": "Follow-up questions",
+        "defaultValue": true,
+        "description": "Keep the conversation so a second question can refer to the first."
+      }
+    ]
+  }
+}
