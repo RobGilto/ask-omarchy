@@ -1,2 +1,3 @@
 bin/omarchy-ask.orig
 *.bak
+.memsearch/
