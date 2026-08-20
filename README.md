@@ -3,10 +3,12 @@
 A bar widget that answers questions about *your* Omarchy machine, from your own
 live config, using the `claude` CLI you are already signed into.
 
+![The panel open in the bar, answering a keybinding question](docs/screenshot.png)
+
 ## Install
 
 ```bash
-omarchy plugin add https://github.com/<you>/ask-omarchy.git --enable
+omarchy plugin add https://github.com/RobGilto/ask-omarchy.git --enable
 ~/.config/omarchy/plugins/ask-omarchy.ask/install.sh
 ```
 
